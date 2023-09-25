@@ -5,7 +5,9 @@ export const Home = () => {
   return (
     <>
       <div className="home">
-        <p>Game will be here </p>
+      <div>
+        <h5>Play with the computer</h5>
+      </div>
       </div>
     </>
   );

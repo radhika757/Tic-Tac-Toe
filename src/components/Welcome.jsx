@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./Welcome.css";
 export const Welcome = () => {
   return (
     <>
-      <div className="box">
+      {/* <div className="box"> */}
+      <motion.div
+        className="box"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.5,
+          ease: [0, 0.71, 0.2, 1.01],
+        
+        }}
+      >
         <div className="content">
           <h3>Welcome to Tic-Tac-Toe !</h3>
 
@@ -19,7 +31,8 @@ export const Welcome = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
+      {/* </div> */}
     </>
   );
 };
