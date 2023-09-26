@@ -6,6 +6,7 @@ export const PlayBox = () => {
   const [currentClass, setCurrentClass] = useState("");
 
   function handleClick() {
+    
     setCurrentClass(currentClass === "x" ? "o" : "x");
   }
   return (
