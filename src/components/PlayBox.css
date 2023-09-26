@@ -1,0 +1,40 @@
+.main-box{
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    left: 90%;
+    top: 15%;
+    width: 25em;
+    height: 25em;
+    padding: 30px 30px;
+}
+.board{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.square{
+    border-width: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.left{
+    border-right-style: solid;
+}
+.top{
+    border-bottom-style: solid;
+}
+.right {
+    border-left-style: solid;
+}
+.bottom {
+    border-top-style: solid;
+}
+.x, .o{
+    font-size: 70px;
+}
