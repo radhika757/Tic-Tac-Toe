@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./PlayBox.css";
 
 export const PlayBox = () => {
+  const [currentClass, setCurrentClass] = useState("");
+
+  function handleClick() {
+    setCurrentClass(currentClass === "x" ? "o" : "x");
+  }
   return (
     <>
       <motion.div
@@ -10,14 +15,19 @@ export const PlayBox = () => {
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
-          duration: 2,
+          duration: 1,
           delay: 0.5,
           ease: [0, 0.6, 0.2, 1.01],
         }}
       >
         <div className="board">
-          <div className="square top left">
-            <div className="x">X</div>
+          <div className="square top left" onClick={handleClick}>
+            {currentClass === "x" && (
+              <div className="x">X</div>
+            )}
+            {currentClass === "o" && (
+              <div className="o">O</div>
+            )}
           </div>
           <div className="square top">
             <div className="o">O</div>

@@ -5,7 +5,18 @@ import robot from "../assets/robot.png";
 import person from "../assets/person.png";
 
 export const Navigator = () => {
-    
+  const [playerSelected, setPlayerSelected] = useState(false);
+  const [computerSelected, setComputerSelected] = useState(false);
+
+  function handlePlayerClick() {
+    setPlayerSelected(true);
+    setComputerSelected(false);
+  }
+
+  function handleComputerHandler() {
+    setComputerSelected(true);
+    setPlayerSelected(false);
+  }
   return (
     <>
       <motion.div
@@ -19,10 +30,16 @@ export const Navigator = () => {
         }}
       >
         <div>
-          <div className="options">
+          <div
+            className={playerSelected ? "selecOpt" : "options"}
+            onClick={handlePlayerClick}
+          >
             <img src={person} alt="player" />
           </div>
-          <div className="options">
+          <div
+            className={computerSelected ? "selecOpt comp" : "options comp"}
+            onClick={handleComputerHandler}
+          >
             <img src={robot} alt="computer" />
           </div>
         </div>
