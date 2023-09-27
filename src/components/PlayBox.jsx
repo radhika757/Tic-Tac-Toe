@@ -3,12 +3,31 @@ import { motion } from "framer-motion";
 import "./PlayBox.css";
 
 export const PlayBox = () => {
-  const [currentClass, setCurrentClass] = useState("");
+  // const [currentClass, setCurrentClass] = useState("");
+  const [isXNext, setIsNext] = useState(true);
 
-  function handleClick() {
-    
-    setCurrentClass(currentClass === "x" ? "o" : "x");
+  function handleClick(event) {
+    // Checking if the box is already marked, if it is then don't change it
+    // setCurrentClass(
+    //   currentClass ? currentClass : currentClass === "x" ? "o" : "x"
+    // );
+    const clonedElement = event.target.cloneNode(true);
+    console.log(clonedElement);
+    if (isXNext) {
+      clonedElement.innerHtml = "X";
+      clonedElement.className = "x";
+    } else {
+      clonedElement.innerHTML = "O";
+      clonedElement.className = "o";
+    }
+
+    // toggle for next click
+    setIsNext(!isXNext);
+
+    //replace clicked squaare with updated element
+    event.target.replaceWith(clonedElement);
   }
+
   return (
     <>
       <motion.div
@@ -23,36 +42,31 @@ export const PlayBox = () => {
       >
         <div className="board">
           <div className="square top left" onClick={handleClick}>
-            {currentClass === "x" && (
-              <div className="x">X</div>
-            )}
-            {currentClass === "o" && (
-              <div className="o">O</div>
-            )}
-          </div>
-          <div className="square top">
-            <div className="o">O</div>
-          </div>
-          <div className="square top right">
             <div className=""></div>
           </div>
-          <div className="square left">
-            <div className="x">X</div>
+          <div className="square top" onClick={handleClick}>
+            <div className=""></div>
           </div>
-          <div className="square">
-            <div className="o">O</div>
+          <div className="square top right" onClick={handleClick}>
+            <div className=""></div>
           </div>
-          <div className="square right">
-            <div className="x">X</div>
+          <div className="square left" onClick={handleClick}>
+            <div className=""></div>
           </div>
-          <div className="square bottom left">
-            <div className="o">O</div>
+          <div className="square" onClick={handleClick}>
+            <div className=""></div>
           </div>
-          <div className="square bottom">
-            <div className="x">X</div>
+          <div className="square right" onClick={handleClick}>
+            <div className=""></div>
           </div>
-          <div className="square bottom right">
-            <div className="o">O</div>
+          <div className="square bottom left" onClick={handleClick}>
+            <div className=""></div>
+          </div>
+          <div className="square bottom" onClick={handleClick}>
+            <div className=""></div>
+          </div>
+          <div className="square bottom right" onClick={handleClick}>
+            <div className=""></div>
           </div>
         </div>
       </motion.div>
