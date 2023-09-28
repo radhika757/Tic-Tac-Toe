@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { motion } from "framer-motion";
 import "./Navigator.css";
@@ -7,25 +7,34 @@ import person from "../assets/person.png";
 import retry from "../assets/try.png";
 
 export const Navigator = () => {
-  const [playerSelected, setPlayerSelected] = useState(false);
+  const [playerSelected, setPlayerSelected] = useState(true);
   const [computerSelected, setComputerSelected] = useState(false);
+ 
 
   function handlePlayerClick() {
     setPlayerSelected(true);
     setComputerSelected(false);
-    setShowPlayersBox(true);
-    // window.location.hash = 'players';
   }
 
   function handleComputerHandler() {
     setComputerSelected(true);
     setPlayerSelected(false);
-    setShowPlayersBox(false);
   }
 
   function handleRefresh() {
     window.location.reload();
   }
+
+  // useEffect(() => {
+  //   console.log(playerSelected);
+  //   if (playerSelected || computerSelected) {
+  //     setDisablePlayg(false);
+  //   } else {
+  //     setDisablePlayg(true);
+  //   }
+  //   console.log(disablePlayg);
+  // }, [playerSelected,computerSelected]);
+
   return (
     <>
       <motion.div
