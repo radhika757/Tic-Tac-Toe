@@ -54,7 +54,7 @@ export const PlayBox = () => {
   }
 
   function handleClick(event) {
-    // console.log(board);
+    console.log(board);
     let targetDiv = event.target;
     let innerDiv = targetDiv.querySelector("div");
 
@@ -81,6 +81,7 @@ export const PlayBox = () => {
     }
   }
   function updateBoard(innerDiv, symbol) {
+    console.log(board);
     const row = parseInt(innerDiv.getAttribute("data-row"));
     const col = parseInt(innerDiv.getAttribute("data-col"));
   

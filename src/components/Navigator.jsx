@@ -38,14 +38,14 @@ export const Navigator = () => {
       >
         <div>
           <div
-            data-data-tooltip-id="player"
+          data-tooltip="Player"
             className={playerSelected ? "selecOpt" : "options"}
             onClick={handlePlayerClick}
           >
             <img src={person} alt="player" />
           </div>
           <div
-            data-tooltip-id="computer"
+         
             className={computerSelected ? "selecOpt comp" : "options comp"}
             onClick={handleComputerHandler}
           >
