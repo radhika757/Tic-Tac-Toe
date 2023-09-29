@@ -20,18 +20,48 @@ export const PlayBox = () => {
         board[i][1] === symbol &&
         board[i][2] === symbol
       ) {
+        console.log('WinneR');
         return true;
       }
     }
+
+    //columns
+    for (let j = 0; j < 3; j++) {
+      if (
+        board[0][j] === symbol &&
+        board[1][j] === symbol &&
+        board[2][j] === symbol
+      ) {
+        console.log('WinneC');
+        return true;
+      }
+    }
+
+    //diagonals
+    if (
+      (board[0][0] === symbol &&
+        board[1][1] === symbol &&
+        board[2][2] === symbol) ||
+      (board[0][2] === symbol &&
+        board[1][1] === symbol &&
+        board[2][0] === symbol)
+    ) {
+      console.log('WinneC');
+      return true;
+    }
+    console.log('Nop Winner');
+    return false; // No winner yet
   }
 
   function handleClick(event) {
+    // console.log(board);
     let targetDiv = event.target;
     let innerDiv = targetDiv.querySelector("div");
 
     if (isXNext) {
       innerDiv.innerHTML = "X";
       innerDiv.className = "x";
+      // console.log(innerDiv);
       updateBoard(innerDiv, "X");
     } else {
       innerDiv.innerHTML = "O";
@@ -39,7 +69,7 @@ export const PlayBox = () => {
       updateBoard(innerDiv, "O");
     }
     //replace clicked squaare with updated element
-    innerDiv.replaceWith(innerDiv);
+    // innerDiv.replaceWith(innerDiv);
 
     if (checkWinner("X")) {
       alert("Player X wins!");
@@ -51,14 +81,19 @@ export const PlayBox = () => {
     }
   }
   function updateBoard(innerDiv, symbol) {
-    // console.log(symbol,innerDiv);
-    console.log(innerDiv.getAttribute("data-row"));
     const row = parseInt(innerDiv.getAttribute("data-row"));
     const col = parseInt(innerDiv.getAttribute("data-col"));
-    console.log(row, col);
-    board[row][col] = symbol;
+  
+    if (board[row][col] === "") {
+      board[row][col] = symbol; // Assign the symbol directly
+    } else {
+      console.log("Already occupied");
+    }
+  
     console.log(board);
   }
+  
+
   return (
     <>
       <motion.div
@@ -73,7 +108,6 @@ export const PlayBox = () => {
       >
         <div className="board">
           <div className="square top left" onClick={handleClick}>
-            {/* <div className=""></div> */}
             <motion.div
               className=""
               data-row="0"
@@ -99,7 +133,7 @@ export const PlayBox = () => {
             <motion.div
               className=""
               data-row="0"
-              data-col="1"
+              data-col="2"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}
@@ -109,8 +143,8 @@ export const PlayBox = () => {
           <div className="square left" onClick={handleClick}>
             <motion.div
               className=""
-              data-row="0"
-              data-col="2"
+              data-row="1"
+              data-col="0"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}
@@ -121,7 +155,7 @@ export const PlayBox = () => {
             <motion.div
               className=""
               data-row="1"
-              data-col="0"
+              data-col="1"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}
@@ -132,7 +166,7 @@ export const PlayBox = () => {
             <motion.div
               className=""
               data-row="1"
-              data-col="1"
+              data-col="2"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}
@@ -142,8 +176,8 @@ export const PlayBox = () => {
           <div className="square bottom left" onClick={handleClick}>
             <motion.div
               className=""
-              data-row="1"
-              data-col="2"
+              data-row="2"
+              data-col="0"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}
@@ -154,7 +188,7 @@ export const PlayBox = () => {
             <motion.div
               className=""
               data-row="2"
-              data-col="0"
+              data-col="1"
               whileHover={{ scale: 0.5 }}
               whileTap={{ scale: 0.7 }}
               initial={{ scale: 0.9 }}
@@ -165,7 +199,7 @@ export const PlayBox = () => {
             <motion.div
               className=""
               data-row="2"
-              data-col="1"
+              data-col="2"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ scale: 0.9 }}

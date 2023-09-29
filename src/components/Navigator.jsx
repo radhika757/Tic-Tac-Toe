@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { motion } from "framer-motion";
 import "./Navigator.css";
@@ -9,7 +9,6 @@ import retry from "../assets/try.png";
 export const Navigator = () => {
   const [playerSelected, setPlayerSelected] = useState(true);
   const [computerSelected, setComputerSelected] = useState(false);
- 
 
   function handlePlayerClick() {
     setPlayerSelected(true);
@@ -25,16 +24,6 @@ export const Navigator = () => {
     window.location.reload();
   }
 
-  // useEffect(() => {
-  //   console.log(playerSelected);
-  //   if (playerSelected || computerSelected) {
-  //     setDisablePlayg(false);
-  //   } else {
-  //     setDisablePlayg(true);
-  //   }
-  //   console.log(disablePlayg);
-  // }, [playerSelected,computerSelected]);
-
   return (
     <>
       <motion.div
@@ -49,18 +38,24 @@ export const Navigator = () => {
       >
         <div>
           <div
+            data-data-tooltip-id="player"
             className={playerSelected ? "selecOpt" : "options"}
             onClick={handlePlayerClick}
           >
             <img src={person} alt="player" />
           </div>
           <div
+            data-tooltip-id="computer"
             className={computerSelected ? "selecOpt comp" : "options comp"}
             onClick={handleComputerHandler}
           >
             <img src={robot} alt="computer" />
           </div>
-          <div className="options" onClick={handleRefresh}>
+          <div
+            className="options"
+            onClick={handleRefresh}
+            data-tooltip-id="refresh"
+          >
             <img
               src={retry}
               alt="retry"
@@ -69,6 +64,7 @@ export const Navigator = () => {
           </div>
         </div>
       </motion.div>
+   
     </>
   );
 };
