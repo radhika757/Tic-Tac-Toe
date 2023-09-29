@@ -11,6 +11,8 @@ export const PlayBox = () => {
     ["", "", ""],
     ["", "", ""],
   ];
+  // let fromLocal = localStorage.getItem("board");
+  // console.log(fromLocal);
 
   function checkWinner(symbol) {
     // for rows
@@ -20,7 +22,7 @@ export const PlayBox = () => {
         board[i][1] === symbol &&
         board[i][2] === symbol
       ) {
-        console.log('WinneR');
+        console.log("WinneR");
         return true;
       }
     }
@@ -32,7 +34,7 @@ export const PlayBox = () => {
         board[1][j] === symbol &&
         board[2][j] === symbol
       ) {
-        console.log('WinneC');
+        console.log("WinneC");
         return true;
       }
     }
@@ -46,22 +48,21 @@ export const PlayBox = () => {
         board[1][1] === symbol &&
         board[2][0] === symbol)
     ) {
-      console.log('WinneC');
+      console.log("WinneC");
       return true;
     }
-    console.log('Nop Winner');
+    console.log("Nop Winner");
     return false; // No winner yet
   }
 
   function handleClick(event) {
-    console.log(board);
     let targetDiv = event.target;
     let innerDiv = targetDiv.querySelector("div");
 
     if (isXNext) {
       innerDiv.innerHTML = "X";
       innerDiv.className = "x";
-      // console.log(innerDiv);
+
       updateBoard(innerDiv, "X");
     } else {
       innerDiv.innerHTML = "O";
@@ -81,19 +82,19 @@ export const PlayBox = () => {
     }
   }
   function updateBoard(innerDiv, symbol) {
-    console.log(board);
+    // let board = JSON.parse(localStorage.getItem("board")) || [];
     const row = parseInt(innerDiv.getAttribute("data-row"));
     const col = parseInt(innerDiv.getAttribute("data-col"));
-  
+
     if (board[row][col] === "") {
       board[row][col] = symbol; // Assign the symbol directly
+      localStorage.setItem("board", JSON.stringify(board));
     } else {
       console.log("Already occupied");
     }
-  
+
     console.log(board);
   }
-  
 
   return (
     <>
